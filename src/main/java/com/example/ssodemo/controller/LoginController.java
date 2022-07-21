@@ -19,21 +19,21 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController {
 
     @Resource
-    private LoginService userService;
+    private LoginService loginService;
 
-    public String getUserFromToken(HttpServletRequest request, HttpServletResponse response){
-        UserDetailModel user = userService.getUserInfoFromToken(userService.getToken(request));
+    //从request的cookie中得到用户信息
+    public UserDetailModel getUserFromToken(HttpServletRequest request, HttpServletResponse response) {
+        //将cookie转为模型
+        UserDetailModel user = loginService.getUserInfoFromToken(loginService.getToken(request));
         if (user == null) {
-            return "Token验证失败";
+            return null;
         }
-        userService.setNewToken(user, request, response);
-        return user.toString();
+        //设置新的token
+        loginService.setNewToken(user, request, response);
+        return user;
     }
 
-    public String spellToken(HttpServletRequest request){
-        return request.getRequestURL().toString() + "?userToken=" + userService.getToken(request);
-    }
-    public LoginContext getInfoFromThreadLocal(){
+    public LoginContext getInfoFromThreadLocal() {
         return LoginContext.getContext();
     }
 }

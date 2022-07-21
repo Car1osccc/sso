@@ -1,4 +1,4 @@
-package com.example.ssodemo.service.loginServiceImpl;
+package com.example.ssodemo.service.serviceImpl;
 
 import com.example.ssodemo.model.UserDetailModel;
 import com.example.ssodemo.service.LoginService;
@@ -20,11 +20,11 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public UserDetailModel getUserInfoFromToken(String token) {
-        return (UserDetailModel) SecurityCookieUtil.checkToken(token);
+        return SecurityCookieUtil.checkToken(token);
     }
 
     @Override
-    public void setNewToken(UserDetailModel user, HttpServletRequest request, HttpServletResponse response) {
+    public void setNewToken(UserDetailModel user, HttpServletRequest request, HttpServletResponse response){
 
         String newToken = SecurityCookieUtil.generateToken(SecurityCookieUtil.encryptUserInfo(user));
         Cookie[] cookies = request.getCookies();
@@ -51,5 +51,19 @@ public class LoginServiceImpl implements LoginService {
             }
         }
         return null;
+    }
+
+    @Override
+    public void logout(HttpServletResponse response){
+        Cookie clearCookie = new Cookie("userToken",null);
+        clearCookie.setMaxAge(0);
+        response.addCookie(clearCookie);
+        try{
+            response.sendRedirect("http://localhost");
+        }catch (Exception e){
+            log.error("重定向失败",e);
+        }
+
+
     }
 }

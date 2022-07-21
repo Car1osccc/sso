@@ -1,11 +1,12 @@
 package com.example.ssodemo.constants;
 
-import lombok.Data;
 
 /**
+ * 加密用户信息的Key
  * @Author: Yihan Chen
  * @Date: 2022/7/18 13:44
  */
+
 public class CookieConstants {
     private static final String key = "CarloscccCarloscccCarloscccCarloscccCarloscccCarloscccCarloscccCarloscccCarloscccCarloscccCarlosccc" +
             "CarloscccCarloscccCarloscccCarloscccCarloscccCarloscccCarloscccCarloscccCarloscccCarlosccc" +

@@ -22,6 +22,7 @@ public class LoginHttpInterceptorConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(loginHttpInterceptor)
                 .excludePathPatterns("/api")
                 .excludePathPatterns("/v1/user/register")
+                .excludePathPatterns("/v1/user/logout")
                 .excludePathPatterns("/v1/user/loginCheck")
                 .excludePathPatterns("/*.html");
 
