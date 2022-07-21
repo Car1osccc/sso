@@ -1,14 +1,12 @@
 package com.example.ssodemo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
- * @Author: Yihan Chen
- * @Date: 2022/7/19 15:03
+ * @author Yihan Chen
+ * @date 2022/7/19 15:03
  */
 @Data
 public class UserDetailModel {
